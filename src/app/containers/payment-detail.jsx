@@ -14,6 +14,7 @@ class PaymentDetail extends React.Component {
             <div>
                 <h2>{id}</h2>
                 <table>
+                    <tbody>
                     <tr>
                         <td>Name</td>
                         <td>{billingName}</td>
@@ -26,6 +27,8 @@ class PaymentDetail extends React.Component {
                         <td>Rekeningnr</td>
                         <td>{accountNumber}</td>
                     </tr>
+                    </tbody>
+
                 </table>
             </div>
         )

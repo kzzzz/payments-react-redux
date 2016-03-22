@@ -2,11 +2,21 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {selectPayment} from '../actions/index';
+import {selectPayment, fetchPayments} from '../actions/index';
 
 class PaymentList extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        console.log('component will mount');
+        this.props.fetchPayments()
+            .then((data)=>console.log(data));
+    }
+
+    componentDidMount() {
+        console.log('component did mount');
     }
 
     render() {
@@ -16,6 +26,13 @@ class PaymentList extends React.Component {
     }
 
     renderList() {
+
+        if (!this.props.payments) {
+            return <li>Loading</li>
+        }
+
+        console.log('payments', this.props.payments);
+
         return this.props.payments.map((payment)=> {
             return (
                 <li key={payment.id}
@@ -38,7 +55,10 @@ function mapStateToProps(state) {
 // on the PaymentList container
 function mapDispatchToProps(dispatch) {
     // Whenever selectPayment is called, the result should be passed to all the reducers
-    return bindActionCreators({selectPayment: selectPayment}, dispatch);
+    return bindActionCreators({
+        fetchPayments: fetchPayments,
+        selectPayment: selectPayment
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentList) ;
