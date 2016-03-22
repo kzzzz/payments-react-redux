@@ -1,3 +1,9 @@
-/**
- * Created by Zhiping on 22-3-2016.
- */
+import {combineReducers} from 'redux';
+import PaymentsReducer from './books';
+
+const rootReducer = combineReducers({
+    'payments': PaymentsReducer
+});
+
+export default rootReducer;
+
