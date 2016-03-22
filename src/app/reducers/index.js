@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
-import PaymentsReducer from './books';
+import PaymentsReducer from './payments';
+import ActivePaymentReducer from './active-payment';
 
 const rootReducer = combineReducers({
-    'payments': PaymentsReducer
+    payments: PaymentsReducer,
+    activePayment: ActivePaymentReducer
 });
 
 export default rootReducer;
